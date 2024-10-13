@@ -16,7 +16,7 @@ namespace linkedlist
         {
             //add after
             TestAddAfterNode();
-            TestAddafterData();
+            TestAddAfterData();
 
             //add before
             TestAddbeforeNode();
@@ -185,44 +185,51 @@ namespace linkedlist
                 Console.WriteLine("Test failed");
             }
         }
-        static void TestAddafterData()
+        static void TestAddAfterData()
         {
             Console.WriteLine("\n");
+            
+            ClinkedList<int> list1 = new ClinkedList<int>();
+            int[] numbers = { 1, 2, 3 };
 
-            ClinkedList<char> list1 = new ClinkedList<char>();
-            char[] chars = { 'a', 'b', 'c', };
-            Node<char> first = new Node<char>('z');
-            list1.AddLast(first);
-            Console.WriteLine("List before adding :" + list1.ToString());
+            int valore = 0;
+            Node<int> first = new Node<int>(valore);
+            
+            list1.AddLast(first); 
+            Console.WriteLine("List before adding: " + list1.ToString());
 
-            for (int i = 0; i < chars.Length; i++)
+            
+            for (int i = 0; i < numbers.Length; i++)
             {
-                list1.Addafter(first, chars[i]);
-                first = first.Next;
+                list1.Addafter(first, numbers[i]); 
+                first = first.Next; 
             }
-            Console.WriteLine("Test add after data : " + list1.ToString());
 
-            Node<char> current = list1.Head;
+            Console.WriteLine("Test add after data: " + list1.ToString());
+
+            Node<int> current = list1.Head; 
             bool corretto = true;
-            if(current == null || current.Data != first.Data)
+
+            if (current == null || current.Data != valore) 
             {
                 corretto = false;
-
             }
             else
             {
-                current = current.Next;
-                for(int i = 0; i < chars.Length; i++)
+                
+                current = current.Next; 
+                for (int i = 0; i < numbers.Length; i++)
                 {
-                    if(current == null || current.Data != chars[i])
+                    if (current == null || current.Data != numbers[i]) 
                     {
                         corretto = false;
                         break;
                     }
-                    current = current.Next;
+                    current = current.Next; 
                 }
             }
 
+            // Risultato del test
             if (corretto)
             {
                 Console.WriteLine("Test passed");
@@ -287,8 +294,9 @@ namespace linkedlist
             Console.WriteLine("\n");
 
             ClinkedList<int> list1 = new ClinkedList<int>();
-            int[] numbers = { 18,33,45,11,21,123,44,5 };
+            int[] numbers = { 18,34,55,53 };
             Node<int> first = new Node<int>(69);
+            Console.WriteLine("The first data is : " + first.Data);
             list1.AddLast(first);
 
             for (int i = 0; i < numbers.Length; i++)
@@ -296,7 +304,34 @@ namespace linkedlist
                list1.AddBefore(first, numbers[i]);
             }
 
-            Console.WriteLine("Test add beofre data : " + list1.ToString());   
+            Console.WriteLine("Test add beofre data : " + list1.ToString());
+            Node<int> current = list1.Head;
+            bool corretto = true;
+
+            for(int i = 0; i < numbers.Length; i++)
+            {
+                if(current == null || current.Data != numbers[i])
+                {
+                    corretto = false;
+                    break;
+                }
+                current = current.Next;
+            }
+
+            if(current==null || current.Data != first.Data)
+            {
+                corretto = false;
+            }
+
+
+            if (corretto)
+            {
+                Console.WriteLine("Test passed");
+            }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
         }
 
 
@@ -317,7 +352,7 @@ namespace linkedlist
 
             }
 
-            Console.WriteLine("Test add first node : "+ list.ToString());
+            Console.WriteLine("After adding : "+ list.ToString());
             bool corretto = true;
 
             if(list.Head.Data != numbers[numbers.Length - 1])
@@ -473,7 +508,7 @@ namespace linkedlist
 
             Console.WriteLine("The list is :" + newList.ToString());
             Console.WriteLine("Last found ABC : " + (lastFoundNode!=null? lastFoundNode.Data :"Not found" ));
-            Console.WriteLine("Last found ABC : " + (notFoundNode != null ? notFoundNode.Data : "Not found"));
+            Console.WriteLine("Last found XYZ : " + (notFoundNode != null ? notFoundNode.Data : "Not found"));
 
         }
         static void RemoveNodeTest()
