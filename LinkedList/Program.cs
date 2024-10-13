@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -58,6 +59,7 @@ namespace linkedlist
 
         static void TestAddLastData()
         {
+            Console.WriteLine("\n");
             ClinkedList<string> list1 = new ClinkedList<string>();
             string[] words = { "AAA", "BBB", "CCCCC" };
             string[] arr = new string[words.Length];
@@ -149,6 +151,7 @@ namespace linkedlist
 
             Node<int> first = new Node<int>(numbers[0]);
             list1.AddLast(first);
+            Console.WriteLine("List before adding :" + list1.ToString());
 
             for(int i = 1;i<numbers.Length;i++) {
 
@@ -157,7 +160,7 @@ namespace linkedlist
                 first = newNode;
             }
 
-            Console.WriteLine("Test add After(node) : " + list1.ToString());
+            Console.WriteLine("Test add After node : " + list1.ToString());
 
             Node<int> current = list1.Head;
             bool corretto = true;
@@ -190,8 +193,9 @@ namespace linkedlist
             char[] chars = { 'a', 'b', 'c', };
             Node<char> first = new Node<char>('z');
             list1.AddLast(first);
+            Console.WriteLine("List before adding :" + list1.ToString());
 
-            for(int i = 0; i < chars.Length; i++)
+            for (int i = 0; i < chars.Length; i++)
             {
                 list1.Addafter(first, chars[i]);
                 first = first.Next;
@@ -239,7 +243,9 @@ namespace linkedlist
             Node<bool> first = new Node<bool>(true);
             list1.AddLast(first);
 
-            for(int i = 0; i < bools.Length; i++)
+            Console.WriteLine("List before adding :" + list1.ToString());
+
+            for (int i = 0; i < bools.Length; i++)
             {
                 Node<bool> newNode = new Node<bool>( bools[i] );
                 list1.AddBefore(first, newNode);
@@ -302,7 +308,9 @@ namespace linkedlist
             ClinkedList<decimal> list = new ClinkedList<decimal>();
            decimal[] numbers  = { 3.13M, 3.111M, 3.22M };
 
-            for(int i = 0; i < numbers.Length; i++)
+            Console.WriteLine("List before adding :" + list.ToString());
+
+            for (int i = 0; i < numbers.Length; i++)
             {
                 Node<decimal> newNode = new Node<decimal>(numbers[i]);
                 list.Addfirst(newNode);
@@ -338,8 +346,10 @@ namespace linkedlist
 
             ClinkedList<string> list = new ClinkedList<string>();
             string[] phrases = { "Hello", "See you", "Have a nice day" };
-            
-            for(int i = 0; i < phrases.Length; i++)
+
+            Console.WriteLine("List before adding :" + list.ToString());
+
+            for (int i = 0; i < phrases.Length; i++)
             {
                 list.Addfirst(phrases[i]);
             }
@@ -518,14 +528,77 @@ namespace linkedlist
             Console.WriteLine($"After removing '{value1Torem}' : " + newList.ToString());
 
         }
+        
         static void RemoveFirstNode()
         {
+            Console.WriteLine("\n");
 
+            ClinkedList<string> newList = new ClinkedList<string>();
+
+            string[] phrases = { "First", "Second", "Third" };
+
+            for (int i = 0; i < phrases.Length; i++)
+            {
+                newList.AddLast(phrases[i]);
+
+            }
+            Console.WriteLine("List before removing : " + newList.ToString());
+
+            newList.RemoveFirst();
+
+            Console.WriteLine("List after removing first node : " + newList.ToString());
+
+            bool corretto = true;
+
+            if(newList.Head== null || newList.Head.Data != phrases[1])
+            {
+                corretto = false;
+            }
+            if(corretto)
+            {
+                Console.WriteLine("Test passed");
+            }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
         }
+        
 
         static void RemoveLastNode()
         {
+            Console.WriteLine("\n");
 
+            ClinkedList<string> newList = new ClinkedList<string>();
+
+            string[] phrases = { "Hp", "Asus", "Lenovo" };
+
+            for (int i = 0; i < phrases.Length; i++)
+            {
+                newList.AddLast(phrases[i]);
+
+            }
+            Console.WriteLine("List before removing : " + newList.ToString());
+
+            newList.RemoveLast();
+
+            Console.WriteLine("List after removing last node : " + newList.ToString());
+
+            bool corretto = true;
+
+            if(newList.Last == null || newList.Last.Data != phrases[phrases.Length - 2])
+            {
+                corretto = false;
+            }
+
+            if (corretto)
+            {
+                Console.WriteLine("Test passed");
+            }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
         }
     }
 }
