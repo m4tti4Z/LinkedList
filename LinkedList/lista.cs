@@ -183,7 +183,7 @@ namespace linkedlist
         }
         public bool Contains(T data)
         {
-            Node<T> current = new Node<T>(data);
+            Node<T> current = Head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -206,7 +206,7 @@ namespace linkedlist
                 }
                 current = current.Next;
             }
-            Console.WriteLine("Element not found");
+            
             return null;
         }
         public Node<T> FindLast(T data)
@@ -260,39 +260,47 @@ namespace linkedlist
         }
         public void Remove(T data)
         {
-            Node<T> toRemove = new Node<T>(data);
 
-            //lista vuota
+
+            // Lista vuota
             if (Head == null)
             {
                 Console.WriteLine("The list is empty");
                 return;
             }
-            //nodo da rimuovere è il primo
-            if (Head.Data.Equals(toRemove.Data))
+
+            // Nodo da rimuovere è il primo
+            if (Head.Data.Equals(data))
             {
-                Head = Head.Next;
-                if (Head == null) //se era da un elemento,diventa vuota
+                Head = Head.Next; // Aggiorna la testa
+
+                // Se ora la lista è vuota
+                if (Head == null)
                 {
-                    Last = null;
+                    Last = null; // La lista diventa vuota
                 }
                 return;
             }
-            //ricerca della prima occorrenza
+
+           
             Node<T> current = Head;
+
             while (current.Next != null)
             {
                 if (current.Next.Data.Equals(data))
                 {
+                    // Se il nodo da rimuovere è l'ultimo
                     if (current.Next == Last)
                     {
-                        Last = current;//se il nodo rimosso era l ultimo
+                        Last = current; // Aggiorna Last
                     }
+                    current.Next = current.Next.Next;
+                    return; 
                 }
-                current.Next = current.Next.Next;//salto il nodo da rimuovere
-                return;
+                current = current.Next; // Avanza al nodo successivo
             }
-            current = current.Next;
+
+            // Se non è stato trovato
             Console.WriteLine("The value " + data + " has not been found in the list");
 
         }
